@@ -1,31 +1,35 @@
-import { Router, Request, Response, NextFunction } from "express";
-import ipoviewControllerAPI from "../controller/ipoviewAPI.controller";
+// Dépendances & Types
+import { Router, Request, Response, NextFunction } from 'express'
 
-const router = Router();
+// Controller
+import Message, { CodeStatus } from '../controller/Message.controller'
+
+const router = Router()
+const messageController = new Message()
 
 // GET
-router.get("/", ipoviewControllerAPI.getHome);
-router.get("/messages", ipoviewControllerAPI.getAllMessages);
-router.get("/messages/:id", ipoviewControllerAPI.getOneMessageByID);
+router.get('/', messageController.getHome)
+router.get('/messages', messageController.getAllMessages)
+router.get('/messages/:id', messageController.getOneMessageByID)
 
 // POST
-router.post("/messages/add", ipoviewControllerAPI.postAddNewMessage);
+router.post('/messages/add', messageController.postAddNewMessage)
 
 // PUT
-router.put("/messages/edit/:id", ipoviewControllerAPI.putEditMessageByID);
+router.put('/messages/edit/:id', messageController.putEditMessageByID)
 
 // DELETE
-router.delete("/messages/delete/:id", ipoviewControllerAPI.deleteMessageByID);
+router.delete('/messages/delete/:id', messageController.deleteMessageByID)
 
 /**
  * Middleware pour se prémunier d'une une route qui n'existerai pas
  */
-router.use("/*", (req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({
-    title: "Page 404",
-    errorMessage: "Désolé cette page n'existe pas",
-  });
-  next();
-});
+router.use('/*', (req: Request, res: Response, next: NextFunction) => {
+    res.status(CodeStatus.NOT_FOUND).json({
+        title: 'Page 404',
+        errorMessage: "Désolé cette page n'existe pas",
+    })
+    next()
+})
 
-export default router;
+export default router

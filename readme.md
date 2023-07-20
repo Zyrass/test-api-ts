@@ -25,13 +25,20 @@ npm run start:dev
 
 ## IV - Amélioration à faire
 
-- Correction des tests unitaires
-- Ajout de plusieurs data de base
-- Créer un backup de la db
-- Restaurer la db à l'installation
+-   Correction des tests unitaires
+-   Ajout de plusieurs data de base
+-   Créer un backup de la db
+-   Restaurer la db à l'installation
 
 ## V - Bonus
 
 ### V-1 - Liens utile
 
-- https://khalilstemmler.com/blogs/typescript/node-starter-project/
+-   https://khalilstemmler.com/blogs/typescript/node-starter-project/
+-   https://github.com/goldbergyoni/nodebestpractices
+-   
+
+### V-2 - Liens DEPENDANCES
+
+-   **winston** : https://www.npmjs.com/package/winston
+-   **chalk** : https://www.npmjs.com/package/chalk

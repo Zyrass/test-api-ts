@@ -1,8 +1,9 @@
-import { Model, Document } from "mongoose";
+// Types
+import { Model, Document } from 'mongoose'
 
 export interface IMessage {
-  name: string;
-  description: string;
+    name: string
+    description: string
 }
 
 export interface IMessageDoc extends IMessage, Document {}
