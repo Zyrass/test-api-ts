@@ -18,10 +18,10 @@ npm i
 npm run start:dev
 ```
 
-## III - Ouvrir postman
+## III - Utiliser postman
 
-Importer le fichier situé dans le répertoire **./backup/postman**
-Enfin faire les test en fonction du projet sans les tests unitaires
+1. Importer le fichier situé dans le répertoire **./backup/postman**
+2. Faire les tests sur : **API_TS without UnitTest** (_sans les tests unitaires_)
 
 ## IV - Amélioration à faire
 
