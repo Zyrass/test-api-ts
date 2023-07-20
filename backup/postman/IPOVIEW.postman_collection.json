@@ -1,0 +1,1853 @@
+{
+	"info": {
+		"_postman_id": "422f5b54-010c-4000-b7c8-17f625794bfc",
+		"name": "IPOVIEW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25415931",
+		"_collection_link": "https://cloudy-station-554160.postman.co/workspace/New-Team-Workspace~43f626e2-189d-48f3-9af9-abf3a4295345/collection/25415931-422f5b54-010c-4000-b7c8-17f625794bfc?action=share&creator=25415931&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "API_JS",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "redirectToGetAllMessagesRoutes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://srv-ag/api",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllMessages",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOneMessageByID Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://srv-ag/api/messages/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "postOneMessage add Alain",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\",\r\n    \"description\": \"J'adore apprendre des nouvelles choses :D \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage add doudou",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Doudou\",\r\n    \"description\": \"Un grand fande la culture Japonaise\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage add Jérome",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jérôme\",\r\n    \"description\": \"Adore démonter des voitures\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage whithout description",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage whithout name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\",\r\n    \"description\": \"J'adore apprendre des nouveautés\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage empty",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\",\r\n    \"description\": \"J'adore apprendre des nouveautés\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deleteOneMessageByID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/delete/64b7",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"delete",
+										"64b7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteOneMessageByID whit bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/delete/69",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"delete",
+										"69"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "putOneMessageByID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\",\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b7991bf07f12b2bec425e0",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b7991bf07f12b2bec425e0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID with bad id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\",\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID empty",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b785006d8dee356372e89a",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b785006d8dee356372e89a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID whithout name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID whithout description",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BAD URI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://srv-ag/api/messages/64b6a1713a12b0bd6e3525af",
+							"protocol": "http",
+							"host": [
+								"srv-ag"
+							],
+							"path": [
+								"api",
+								"messages",
+								"64b6a1713a12b0bd6e3525af"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API_TS without UnitTest",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "redirectToGetAllMessagesRoutes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:27017/api",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "27017",
+									"path": [
+										"api"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllMessages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:27017/api/messages",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "27017",
+									"path": [
+										"api",
+										"messages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOneMessageByID valide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://srv-ag/api/messages/64b8ec3f7bc9fbf210c42184",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"64b8ec3f7bc9fbf210c42184"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOneMessageByID invalide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/696969",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"696969"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "postOneMessage add Alain",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\",\r\n    \"description\": \"Adore apprendre des nouvelles choses\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage add doudou",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Doudou\",\r\n    \"description\": \"Un grand fande la culture Japonaise\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage add Jérome",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jérôme\",\r\n    \"description\": \"Adore démonter des voitures\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage whithout description",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage whithout name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage empty",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deleteOneMessageByID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/delete/64b7",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"delete",
+										"64b7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteOneMessageByID whit bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/delete/69",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"delete",
+										"69"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "putOneMessageByID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\",\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b8ec3f7bc9fbf210c42184",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b8ec3f7bc9fbf210c42184"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID with bad id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\",\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID empty",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID whithout name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID whithout description",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b8ec3f7bc9fbf210c42184",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b8ec3f7bc9fbf210c42184"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BAD URI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://srv-ag/api/messagessdfsdf",
+							"protocol": "http",
+							"host": [
+								"srv-ag"
+							],
+							"path": [
+								"api",
+								"messagessdfsdf"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Concepotion d'une micro API pour tester le fonctionnement de celle-ci via typescript"
+		},
+		{
+			"name": "API_TS with UnitTest - BUG",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "redirectToGetAllMessagesRoutes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"// Vérification du statut de la réponse\r",
+											"pm.test(\"Statut de la réponse doit être à 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"// Vérification du cotenu du json\r",
+											"pm.test(\"La propriété 'title' doit être Page 404\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.title).to.equal('Page 404');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La propriété 'message' doit être: Désolé cete page ne contient aucune data\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.equal('Désolé cette page ne contient aucune data');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://srv-ag/api",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.test(\"Status code doit être: 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// Vérification de l'existance des propriétés\r",
+											"pm.test(\"La propriété 'message' doit exister\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.have.property('message');\r",
+											"});\r",
+											"pm.test(\"La propriété 'body' doit exister\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.have.property('body');\r",
+											"});\r",
+											"pm.test(\"La propriété 'body.name' doit exister\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.body).to.have.property('name');\r",
+											"});\r",
+											"pm.test(\"La propriété 'body.description' doit exister\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.body).to.have.property('description');\r",
+											"});\r",
+											"\r",
+											"// Varification du contenu des propriétés existante\r",
+											"pm.test(\"La propriété 'message' doit être: Enregistrement réussi avec succès'\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.equal(\"Enregistrement réussi avec succès\");\r",
+											"});\r",
+											"pm.test(\"La propriété 'body.name' doit être: Alain'\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.body.name).to.equal(\"Alain\");\r",
+											"});\r",
+											"pm.test(\"La propriété 'body.description' doit être: Adore apprendre des nouvelles choses'\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.body.description).to.equal(\"Adore apprendre des nouvelles choses\");\r",
+											"});\r",
+											"\r",
+											"// Extraction de la valeur de l'ID à partir des données JSON de la réponse\r",
+											"pm.test(\"Extraction de la valeur de l'ID\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.not.be.null;\r",
+											"    var id = jsonData._id; // Remplacez \"id\" par la clé appropriée dans votre JSON\r",
+											"    pm.environment.set(\"id\", id); // Définition de la variable d'environnement \"id\"\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\",\r\n    \"description\": \"Adore apprendre des nouvelles choses\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllMessages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"// Vérification du statut de la réponse\r",
+											"pm.test(\"Statut de la réponse doit être à 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Vérification du type de contenu de la réponse\r",
+											"pm.test(\"Type de contenu est application/json; charset=utf-8\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+											"});\r",
+											"\r",
+											"// Extraction des données JSON de la réponse\r",
+											"pm.test(\"Extraction des données JSON\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.not.be.null;\r",
+											"    pm.globals.set(\"jsonData\", JSON.stringify(jsonData)); // Stockage des données dans une variable globale\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOneMessageByID valide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// SI 200\r",
+											"\r",
+											"// Vérification du status\r",
+											"pm.test(\"Le code de statut doit être 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Vérification de l'existence des propriétés\r",
+											"pm.test(\"La propriété 'title' doit exister\", function () {\r",
+											"  var jsonData = pm.response.json();\r",
+											"  pm.expect(jsonData).to.have.property('title');\r",
+											"});\r",
+											"pm.test(\"La propriété 'message' doit exister\", function () {\r",
+											"  var jsonData = pm.response.json();\r",
+											"  pm.expect(jsonData).to.have.property('message');\r",
+											"});\r",
+											"pm.test(\"La propriété 'message.id' doit exister\", function () {\r",
+											"  var jsonData = pm.response.json();\r",
+											"  pm.expect(jsonData.message).to.have.property('id');\r",
+											"});\r",
+											"pm.test(\"La propriété 'message.name' doit exister\", function () {\r",
+											"  var jsonData = pm.response.json();\r",
+											"  pm.expect(jsonData.message).to.have.property('name');\r",
+											"});\r",
+											"pm.test(\"La propriété 'message.description' doit exister\", function () {\r",
+											"  var jsonData = pm.response.json();\r",
+											"  pm.expect(jsonData.message).to.have.property('description');\r",
+											"});\r",
+											"\r",
+											"// Vérification du contenu des propriétés existantes\r",
+											"pm.test(\"La propriété 'title' doit être: 'Récupération réussie'\", function () {\r",
+											"  var jsonData = pm.response.json();\r",
+											"  pm.expect(jsonData.title).to.equal(\"Récupération réussie\");\r",
+											"});\r",
+											"pm.test(\"La propriété 'message.id' doit être la même que la variable globale 'id'\", function () {\r",
+											"  var jsonData = pm.response.json();\r",
+											"  pm.expect(jsonData.message.id).to.equal(pm.globals.get(\"id\"));\r",
+											"});\r",
+											"pm.test(\"La propriété 'message.name' doit être: Alain'\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message.name).to.equal(\"Alain\");\r",
+											"});\r",
+											"pm.test(\"La propriété 'description' doit être: Adore apprendre des nouvelles choses'\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message.description).to.equal(\"Adore apprendre des nouvelles choses\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://srv-ag/api/messages/{{id}}",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOneMessageByID invalide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Vérification du status\r",
+											"pm.test(\"Status code doit être : 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"// Vérification de l'existance des propriétés\r",
+											"pm.test(\"La propriété 'title' doit exister\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.have.property('title');\r",
+											"});\r",
+											"pm.test(\"La propriété 'message' doit exister\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Vérification du contenu des propriétés existante\r",
+											"pm.test(\"La propriété 'message.title' doit être: Récupération impossible\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.title).to.equal(\"Récupération impossible\");\r",
+											"});\r",
+											"pm.test(\"La propriété 'message' doit être: L'ID saisie (696969), n'existe pas\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.equal(\"L'ID saisie (696969), n'existe pas\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/696969",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"696969"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "postOneMessage add doudou",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Doudou\",\r\n    \"description\": \"Un grand fande la culture Japonaise\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage add Jérome",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jérôme\",\r\n    \"description\": \"Adore démonter des voitures\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage whithout description",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage whithout name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Alain\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postOneMessage empty",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/add",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"add"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deleteOneMessageByID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/delete/64b7",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"delete",
+										"64b7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteOneMessageByID whit bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/delete/69",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"delete",
+										"69"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "putOneMessageByID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\",\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b7f450f1eed0c40893bcfa",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b7f450f1eed0c40893bcfa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID with bad id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\",\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID empty",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID whithout name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Découvre VueJS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putOneMessageByID whithout description",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tarek\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://srv-ag/api/messages/edit/64b6a1713a12b0bd6e3525af",
+									"protocol": "http",
+									"host": [
+										"srv-ag"
+									],
+									"path": [
+										"api",
+										"messages",
+										"edit",
+										"64b6a1713a12b0bd6e3525af"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BAD URI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://srv-ag/api/messages/64b6a1713a12b0bd6e3525af",
+							"protocol": "http",
+							"host": [
+								"srv-ag"
+							],
+							"path": [
+								"api",
+								"messages",
+								"64b6a1713a12b0bd6e3525af"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
