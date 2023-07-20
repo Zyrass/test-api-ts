@@ -1,18 +1,37 @@
-import express, { Application } from "express";
-import getConnexionDB from "./database/connexion.database";
-import ipoviewAPIRoute from "./routes/ipoviewAPI.route";
+// Dépendances et Types
+import express, { Application } from 'express'
 
-getConnexionDB();
+// Controller
+import Bienvenue from './controller/Bienvenue.controller'
 
-const app: Application = express();
-const port: string = process.env.PORT || "3000";
+// Connexion à la DB
+import {
+    getConnexionDBLocal, // DB LOCAL
+    getConnexionDBOnline, // DB ONLINE
+} from './database/connexion.database'
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+getConnexionDBLocal()
+getConnexionDBOnline() // A tester les identifiants
+
+// Routing
+import ipoviewAPIRoute from './routes/ipoviewAPI.route'
+
+// Initialisation
+const app: Application = express()
+const host: string = process.env.HOST || 'localhost'
+const port: string = process.env.PORT || '3000'
+
+// Middlewares
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 /**
  * Middleware en lien avec le point d'entrée de l'API
  */
-app.use("/api", ipoviewAPIRoute);
+app.use('/api', ipoviewAPIRoute)
 
-app.listen(port, () => console.log(`connected to http://localhost:${port}`));
+// Ecoute du server
+app.listen(port, () => {
+    console.log(`connected to http://${host}:${port}`)
+    console.log(Bienvenue.information)
+})
