@@ -11,9 +11,15 @@ import {
     IMessageDoc,
     IMessageModel,
 } from '../interfaces/IMessage.interface'
+import {
+    boxDivers,
+    boxError,
+    boxSuccess,
+    boxWarning,
+} from '../services/SBoxen.service'
 
 // Enum
-export enum CodeStatus {
+export enum ESTATUS_CODES {
     SUCCESS = 200,
     CREATED = 201,
     REDIRECT_PERMANENTLY = 301,
@@ -23,11 +29,12 @@ export enum CodeStatus {
     UNAUTHORIZED = 401,
     FORBIDDEN = 403,
     NOT_FOUND = 404,
+    UNPROCESSABLE_ENTITY = 422,
     INTERNAL_SERVER_ERROR = 500,
     GATEWAY_TIMEOUT = 504,
 }
 
-export default class Message {
+class Message {
     public static information: string =
         'Class contenant toutes les routes de cette API'
 
@@ -39,7 +46,7 @@ export default class Message {
      * @param {Response} res
      */
     public getHome(req: Request, res: Response): void {
-        res.status(CodeStatus.NOT_FOUND).json({
+        res.status(ESTATUS_CODES.NOT_FOUND).json({
             title: 'Page 404',
             message: 'Désolé cette page ne contient aucune data',
         })
@@ -55,7 +62,7 @@ export default class Message {
             const counter: number = await MessageModel.countDocuments()
 
             if (counter == 0) {
-                return res.status(CodeStatus.SUCCESS).json({
+                return res.status(ESTATUS_CODES.SUCCESS).json({
                     title: 'Liste des documents',
                     counterDocument: counter,
                     documents: 'Actuellement aucun document de disponible',
@@ -65,7 +72,7 @@ export default class Message {
             if (counter > 0) {
                 const allDocuments: IMessage[] =
                     await MessageModel.find<IMessageDoc>()
-                res.status(CodeStatus.SUCCESS).json({
+                res.status(ESTATUS_CODES.SUCCESS).json({
                     title: 'Voir la liste de tous les documents',
                     counterDocument: counter,
                     documents: allDocuments,
@@ -74,7 +81,7 @@ export default class Message {
         } catch (error: any) {
             if (error instanceof Error) {
                 console.log(error.stack)
-                res.status(CodeStatus.INTERNAL_SERVER_ERROR).json({
+                res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                     title: error.name,
                     message: error.message,
                 })
@@ -93,7 +100,7 @@ export default class Message {
             let checkValidObjectID: boolean = Types.ObjectId.isValid(id)
 
             if (!checkValidObjectID) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Récupération impossible',
                     message: `L'ID saisie (${id}), n'existe pas`,
                 })
@@ -103,7 +110,7 @@ export default class Message {
                 _id: id,
             })
 
-            res.status(CodeStatus.SUCCESS).json({
+            res.status(ESTATUS_CODES.SUCCESS).json({
                 title: 'Récupération réussie',
                 message: {
                     id: currentMessage!._id, // not null (!)
@@ -114,7 +121,7 @@ export default class Message {
         } catch (error: any) {
             if (error instanceof Error) {
                 console.log(error.stack)
-                res.status(CodeStatus.INTERNAL_SERVER_ERROR).json({
+                res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                     title: error.name,
                     message: error.message,
                 })
@@ -135,21 +142,30 @@ export default class Message {
                 : null
 
             if (!name && !description) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                boxWarning(
+                    `Error ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}, tous les champs sont obligatoire`,
+                )
+                return res.status(ESTATUS_CODES.UNPROCESSABLE_ENTITY).json({
                     title: 'Erreur de saisie',
                     message: 'Tous les champs sont obligatoire',
                 })
             }
 
             if (name && !description) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                boxWarning(
+                    `Error ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}, le champ "description" est obligatoire`,
+                )
+                return res.status(ESTATUS_CODES.UNPROCESSABLE_ENTITY).json({
                     title: 'Erreur de saisie',
                     message: 'Le champ description est obligatoire',
                 })
             }
 
             if (!name && description) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                boxWarning(
+                    `Error ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}, le champ "nom" est obligatoire`,
+                )
+                return res.status(ESTATUS_CODES.UNPROCESSABLE_ENTITY).json({
                     title: 'Erreur de saisie',
                     message: 'Le champ nom est obligatoire',
                 })
@@ -162,7 +178,9 @@ export default class Message {
 
             newMessage.save() // Enregistrement du nouveau message
 
-            res.status(CodeStatus.CREATED).json({
+            boxSuccess('Enregistrement réussi avec succès')
+
+            res.status(ESTATUS_CODES.CREATED).json({
                 message: 'Enregistrement réussi avec succès',
                 body: {
                     name,
@@ -171,8 +189,8 @@ export default class Message {
             })
         } catch (error: any) {
             if (error instanceof Error) {
-                console.log(error.stack)
-                res.status(CodeStatus.INTERNAL_SERVER_ERROR).json({
+                boxError('Error 500', error.stack)
+                res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                     title: error.name,
                     message: error.message,
                 })
@@ -190,7 +208,7 @@ export default class Message {
             const id: string = req.params.id.trim()
             const checkIsValidObjectId: boolean = Types.ObjectId.isValid(id)
             if (!checkIsValidObjectId) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Bad Request',
                     message: "Cet ID n'existe pas dans la base de donnée",
                 })
@@ -202,14 +220,14 @@ export default class Message {
                 : null
 
             if (!name && !description) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Erreur de saisie',
                     message: 'Tous les champs sont obligatoire',
                 })
             }
 
             if (name && !description) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Erreur de saisie',
                     message:
                         'Il vous manque le champ description qui est obligatoire',
@@ -217,7 +235,7 @@ export default class Message {
             }
 
             if (!name && description) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Erreur de saisie',
                     message: 'Il vous manque le champ nom qui est obligatoire',
                 })
@@ -242,7 +260,7 @@ export default class Message {
             if (currentMessageAfterUpdate) {
                 console.log({
                     protocolUsed: 'PUT',
-                    status: CodeStatus.SUCCESS,
+                    status: ESTATUS_CODES.SUCCESS,
                     before: {
                         id: currentMessageBeforeUpdate!._id,
                         name: currentMessageBeforeUpdate!.name,
@@ -254,7 +272,7 @@ export default class Message {
                         description: currentMessageAfterUpdate.description,
                     },
                 })
-                res.status(CodeStatus.SUCCESS).json({
+                res.status(ESTATUS_CODES.SUCCESS).json({
                     message: 'Le message a été mis à jour avec succès',
                 })
             }
@@ -262,7 +280,7 @@ export default class Message {
             if (error instanceof Error) {
                 console.log("Erreur sur l'édition:")
                 console.log(error.stack)
-                res.status(CodeStatus.INTERNAL_SERVER_ERROR).json({
+                res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                     title: error.name,
                     message: error.message,
                 })
@@ -280,7 +298,7 @@ export default class Message {
             const id: string = req.params.id ? req.params.id.trim() : ''
             const checkValidObjectID = Types.ObjectId.isValid(id)
             if (!checkValidObjectID) {
-                return res.status(CodeStatus.BAD_REQUEST).json({
+                return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Forbidden',
                     message: `Vous ne pouvez pas faire ceci, l'id "${id}" n'existe pas.`,
                 })
@@ -299,7 +317,7 @@ export default class Message {
                     responseDeleteMessage.deletedCount != undefined &&
                     responseDeleteMessage.deletedCount > 0
                 ) {
-                    res.status(CodeStatus.SUCCESS).json({
+                    res.status(ESTATUS_CODES.SUCCESS).json({
                         message: 'Suppression réussi avec succès',
                         body: {
                             id: currentMessage._id,
@@ -309,17 +327,19 @@ export default class Message {
                     })
                 }
             } else {
-                res.status(CodeStatus.BAD_REQUEST).json({
+                res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Page Not Found',
                     message: `Désolé, mais l'ID "${id} n'existe plus en base`,
                 })
             }
         } catch (error: any) {
             console.log(error.stack)
-            res.status(CodeStatus.INTERNAL_SERVER_ERROR).json({
+            res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                 title: error.name,
                 message: error.message,
             })
         }
     }
 }
+
+export default Message
