@@ -4,6 +4,9 @@ import express, { Application } from "express";
 // Controller
 import Bienvenue from "./controller/Bienvenue.controller";
 
+// Services
+import { boxInfo, boxSuccess, boxWarning } from "./services/SBoxen.service";
+
 // Connexion à la DB
 import {
   getConnexionDBLocal, // DB LOCAL
@@ -32,6 +35,7 @@ app.use("/api", ipoviewAPIRoute);
 
 // Ecoute du server
 app.listen(port, () => {
-  console.log(`connected to http://${host}:${port}`);
-  console.log(Bienvenue.information);
+  boxInfo(Bienvenue.information);
+  boxSuccess(`Connexion réussi sur http://${host}:${port}`);
+  boxWarning(`Connexion réussi sur http://${host}:${port}`);
 });
