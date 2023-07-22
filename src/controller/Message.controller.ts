@@ -11,6 +11,8 @@ import {
     IMessageDoc,
     IMessageModel,
 } from '../interfaces/IMessage.interface'
+
+// Services
 import {
     boxDivers,
     boxError,
@@ -19,24 +21,10 @@ import {
 } from '../services/SBoxen.service'
 
 // Enum
-export enum ESTATUS_CODES {
-    SUCCESS = 200,
-    CREATED = 201,
-    REDIRECT_PERMANENTLY = 301,
-    REDIRECT_TEMPORARLY = 302,
-    NOT_MODIFIED = 304,
-    BAD_REQUEST = 400,
-    UNAUTHORIZED = 401,
-    FORBIDDEN = 403,
-    NOT_FOUND = 404,
-    UNPROCESSABLE_ENTITY = 422,
-    INTERNAL_SERVER_ERROR = 500,
-    GATEWAY_TIMEOUT = 504,
-}
+import { ESTATUS_CODES } from '../Enums/EMessage.enum'
 
 class Message {
-    public static information: string =
-        'Class contenant toutes les routes de cette API'
+    public static information: string = `la classe Message offre toutes les fonctionnalités nécessaires pour gérer la ressource "message" dans l'API, en permettant la création, la lecture, la mise à jour et la suppression des messages, tout en fournissant des codes d'état HTTP appropriés et des messages d'erreur clairs en cas de problème.`
 
     constructor() {}
 

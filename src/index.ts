@@ -15,6 +15,7 @@ import {
 
 // Routing
 import ipoviewAPIRoute from './routes/ipoviewAPI.route'
+import Message from './controller/Message.controller'
 
 // Initialisation
 const app: Application = express()

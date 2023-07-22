@@ -2,10 +2,13 @@
 import { Router, Request, Response, NextFunction } from 'express'
 
 // Controller
-import Message, { ESTATUS_CODES } from '../controller/Message.controller'
+import Message from '../controller/Message.controller'
 
 // Services
 import { boxError } from '../services/SBoxen.service'
+
+// Enum
+import { ESTATUS_CODES } from '../Enums/EMessage.enum'
 
 const router = Router()
 const messageController = new Message()
