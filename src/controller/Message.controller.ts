@@ -22,6 +22,7 @@ import {
 
 // Enum
 import { ESTATUS_CODES } from '../Enums/EMessage.enum'
+import { slogger } from '../services/SLogger.service'
 
 class Message {
     public static information: string = `la classe Message offre toutes les fonctionnalités nécessaires pour gérer la ressource "message" dans l'API, en permettant la création, la lecture, la mise à jour et la suppression des messages, tout en fournissant des codes d'état HTTP appropriés et des messages d'erreur clairs en cas de problème.`
@@ -34,8 +35,17 @@ class Message {
      * @param {Response} res
      */
     public getHome(req: Request, res: Response): void {
+        // Service SLogger (Winston)
+        slogger.http(`✅ - ${req.method} : ${req.originalUrl}`)
+        slogger.warn(`⚠️ - Aucune data à afficher sur ${req.originalUrl}`)
+
+        // Service SBoxen (boxen)
+        boxWarning(
+            `⚠️ - Il n'y a aucune data à afficher sur ${req.originalUrl}`,
+        )
+
         res.status(ESTATUS_CODES.NOT_FOUND).json({
-            title: 'Page 404',
+            title: 'Page 404', // Code d'erreur à revoir
             message: 'Désolé cette page ne contient aucune data',
         })
     }
@@ -50,6 +60,17 @@ class Message {
             const counter: number = await MessageModel.countDocuments()
 
             if (counter == 0) {
+                // Service SLogger (Winston)
+                slogger.http(`✅ - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️ - Aucune data à afficher sur ${req.originalUrl}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `⚠️ - Actuellement il n'y a aucun document à afficher.`,
+                )
+
                 return res.status(ESTATUS_CODES.SUCCESS).json({
                     title: 'Liste des documents',
                     counterDocument: counter,
@@ -60,6 +81,18 @@ class Message {
             if (counter > 0) {
                 const allDocuments: IMessage[] =
                     await MessageModel.find<IMessageDoc>()
+
+                // Service SLogger (Winston)
+                slogger.http(`✅ - ${req.method} : ${req.originalUrl}`)
+                slogger.info(`✅ Traitement réussie sur ${req.originalUrl}.`)
+
+                // Service SBoxen (boxen)
+                boxSuccess(
+                    `✅ - Vous avez récupérer ${counter} ${
+                        counter > 1 ? 'documents' : 'document'
+                    }`,
+                )
+
                 res.status(ESTATUS_CODES.SUCCESS).json({
                     title: 'Voir la liste de tous les documents',
                     counterDocument: counter,
@@ -68,7 +101,15 @@ class Message {
             }
         } catch (error: any) {
             if (error instanceof Error) {
-                console.log(error.stack)
+                // Service SLogger (Winston)
+                slogger.http(`❌ - ${req.method} : ${req.originalUrl}`)
+                slogger.error(
+                    `❌ - Erreur rencontré sur ${req.originalUrl} : ${error.message}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxError(error.message, error.stack)
+
                 res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                     title: error.name,
                     message: error.message,
@@ -88,6 +129,16 @@ class Message {
             let checkValidObjectID: boolean = Types.ObjectId.isValid(id)
 
             if (!checkValidObjectID) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.error(
+                    `❌ - L'id passé en paramètre n'existe pas sur ${req.originalUrl}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `❌ - L'id passé en paramètre n'existe pas sur ${req.originalUrl}`,
+                )
                 return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Récupération impossible',
                     message: `L'ID saisie (${id}), n'existe pas`,
@@ -97,6 +148,13 @@ class Message {
             const currentMessage = await MessageModel.findOne<IMessageDoc>({
                 _id: id,
             })
+
+            // Service SLogger (Winston)
+            slogger.http(`✅ - ${req.method} : ${req.originalUrl}`)
+            slogger.info(`✅ - Récupération réussie sur ${req.originalUrl}`)
+
+            // Service SBoxen (boxen)
+            boxSuccess(`✅ - Récupération réussie sur ${req.originalUrl}`)
 
             res.status(ESTATUS_CODES.SUCCESS).json({
                 title: 'Récupération réussie',
@@ -108,7 +166,15 @@ class Message {
             })
         } catch (error: any) {
             if (error instanceof Error) {
-                console.log(error.stack)
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.error(
+                    `❌ - Erreur rencontré sur ${req.originalUrl}: ${error.message}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxError(error.message, error.stack)
+
                 res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                     title: error.name,
                     message: error.message,
@@ -130,8 +196,15 @@ class Message {
                 : null
 
             if (!name && !description) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️ - Tous les champs sont obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
+
+                // Service SBoxen (boxen)
                 boxWarning(
-                    `Error ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}, tous les champs sont obligatoire`,
+                    `⚠️ - Tous les champs sont obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
                 )
                 return res.status(ESTATUS_CODES.UNPROCESSABLE_ENTITY).json({
                     title: 'Erreur de saisie',
@@ -140,8 +213,15 @@ class Message {
             }
 
             if (name && !description) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️ - Le champ description est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
+
+                // Service SBoxen (boxen)
                 boxWarning(
-                    `Error ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}, le champ "description" est obligatoire`,
+                    `⚠️ - Le champ description est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
                 )
                 return res.status(ESTATUS_CODES.UNPROCESSABLE_ENTITY).json({
                     title: 'Erreur de saisie',
@@ -150,8 +230,15 @@ class Message {
             }
 
             if (!name && description) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️  - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️  - Le champ nom est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
+
+                // Service SBoxen (boxen)
                 boxWarning(
-                    `Error ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}, le champ "nom" est obligatoire`,
+                    `⚠️  - Le champ nom est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
                 )
                 return res.status(ESTATUS_CODES.UNPROCESSABLE_ENTITY).json({
                     title: 'Erreur de saisie',
@@ -166,7 +253,16 @@ class Message {
 
             newMessage.save() // Enregistrement du nouveau message
 
-            boxSuccess('Enregistrement réussi avec succès')
+            // Service SLogger (Winston)
+            slogger.http(`✅ - ${req.method} : ${req.originalUrl}`)
+            slogger.info(
+                `✅ - Enregistrement réussi avec succès sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.SUCCESS}`,
+            )
+
+            // Service SBoxen (boxen)
+            boxSuccess(
+                `✅ - Enregistrement réussi avec succès sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.SUCCESS}`,
+            )
 
             res.status(ESTATUS_CODES.CREATED).json({
                 message: 'Enregistrement réussi avec succès',
@@ -177,7 +273,15 @@ class Message {
             })
         } catch (error: any) {
             if (error instanceof Error) {
-                boxError('Error 500', error.stack)
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.error(
+                    `❌ - Erreur rencontré sur ${req.originalUrl}: ${error.message}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxError(error.message, error.stack)
+
                 res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                     title: error.name,
                     message: error.message,
@@ -196,6 +300,16 @@ class Message {
             const id: string = req.params.id.trim()
             const checkIsValidObjectId: boolean = Types.ObjectId.isValid(id)
             if (!checkIsValidObjectId) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.error(
+                    `❌ - L'id passé en paramètre n'existe pas sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.BAD_REQUEST}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `❌ - L'id passé en paramètre n'existe pas sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.BAD_REQUEST}`,
+                )
                 return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Bad Request',
                     message: "Cet ID n'existe pas dans la base de donnée",
@@ -208,6 +322,16 @@ class Message {
                 : null
 
             if (!name && !description) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️ - Tous les champs sont obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `⚠️ - Tous les champs sont obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
                 return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Erreur de saisie',
                     message: 'Tous les champs sont obligatoire',
@@ -215,6 +339,16 @@ class Message {
             }
 
             if (name && !description) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️ - Le champ description est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `⚠️ - Le champ description est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
                 return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Erreur de saisie',
                     message:
@@ -223,6 +357,16 @@ class Message {
             }
 
             if (!name && description) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️ - Le champ nom est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `⚠️ - Le champ nom est obligatoire sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.UNPROCESSABLE_ENTITY}`,
+                )
                 return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Erreur de saisie',
                     message: 'Il vous manque le champ nom qui est obligatoire',
@@ -246,7 +390,18 @@ class Message {
                 })
 
             if (currentMessageAfterUpdate) {
-                console.log({
+                // Service SLogger (Winston)
+                slogger.http(`✅ - ${req.method} : ${req.originalUrl}`)
+                slogger.info(
+                    `✅ - Modification réussi avec succès sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.SUCCESS}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxSuccess(
+                    `✅ - Modification réussi avec succès sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.SUCCESS}`,
+                )
+
+                const essai = {
                     protocolUsed: 'PUT',
                     status: ESTATUS_CODES.SUCCESS,
                     before: {
@@ -259,7 +414,13 @@ class Message {
                         name: currentMessageAfterUpdate.name,
                         description: currentMessageAfterUpdate.description,
                     },
+                }
+
+                boxDivers(JSON.stringify(essai))
+                console.log({
+                    resultUpdate: essai,
                 })
+
                 res.status(ESTATUS_CODES.SUCCESS).json({
                     message: 'Le message a été mis à jour avec succès',
                 })
@@ -286,6 +447,17 @@ class Message {
             const id: string = req.params.id ? req.params.id.trim() : ''
             const checkValidObjectID = Types.ObjectId.isValid(id)
             if (!checkValidObjectID) {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.error(
+                    `❌ - L'id passé en paramètre n'existe pas sur ${req.originalUrl}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `❌ - L'id passé en paramètre n'existe pas sur ${req.originalUrl}`,
+                )
+
                 return res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Forbidden',
                     message: `Vous ne pouvez pas faire ceci, l'id "${id}" n'existe pas.`,
@@ -305,6 +477,17 @@ class Message {
                     responseDeleteMessage.deletedCount != undefined &&
                     responseDeleteMessage.deletedCount > 0
                 ) {
+                    // Service SLogger (Winston)
+                    slogger.http(`✅ - ${req.method} : ${req.originalUrl}`)
+                    slogger.info(
+                        `✅ - Suppression réussi avec succès sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.SUCCESS}`,
+                    )
+
+                    // Service SBoxen (boxen)
+                    boxSuccess(
+                        `✅ - Suppression réussi avec succès sur ${req.originalUrl}, code retourné ${ESTATUS_CODES.SUCCESS}`,
+                    )
+
                     res.status(ESTATUS_CODES.SUCCESS).json({
                         message: 'Suppression réussi avec succès',
                         body: {
@@ -315,13 +498,31 @@ class Message {
                     })
                 }
             } else {
+                // Service SLogger (Winston)
+                slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+                slogger.warn(
+                    `⚠️ - Suppression impossible sur ${req.originalUrl} l'id n'existe plus, code retourné ${ESTATUS_CODES.BAD_REQUEST}`,
+                )
+
+                // Service SBoxen (boxen)
+                boxWarning(
+                    `⚠️ - Suppression impossible sur ${req.originalUrl} l'id n'existe plus, code retourné ${ESTATUS_CODES.BAD_REQUEST}`,
+                )
                 res.status(ESTATUS_CODES.BAD_REQUEST).json({
                     title: 'Page Not Found',
                     message: `Désolé, mais l'ID "${id} n'existe plus en base`,
                 })
             }
         } catch (error: any) {
-            console.log(error.stack)
+            // Service SLogger (Winston)
+            slogger.http(`⚠️ - ${req.method} : ${req.originalUrl}`)
+            slogger.error(
+                `❌ - Erreur rencontré sur ${req.originalUrl}: ${error.message}`,
+            )
+
+            // Service SBoxen (boxen)
+            boxError(error.message, error.stack)
+
             res.status(ESTATUS_CODES.INTERNAL_SERVER_ERROR).json({
                 title: error.name,
                 message: error.message,
