@@ -8,7 +8,7 @@ import { Model, Document } from 'mongoose'
 // C'est une interface qui définit la structure d'un message.
 export interface IMessage {
     name: string
-    description: string
+    description: string // Propriété 'description' de type chaîne de caractères (string).
 }
 
 // Interface IMessageDoc

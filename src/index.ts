@@ -36,7 +36,7 @@ app.listen(port, () => {
     // Message informatif
     boxInfo(Bienvenue.information)
     boxDivers(
-        `Le serveur Express est démarré et accessible à cette adresse : http://${host}:${port}/`,
+        `Le serveur Express a été démarré et est maintenant accessible à l'adresse : http://${host}:${port}/`,
     )
 
     // Connexion à la DB (Local OR Online)

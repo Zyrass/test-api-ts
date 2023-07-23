@@ -16,12 +16,12 @@ export function getConnexionDBLocal() {
     connect(`mongodb://127.0.0.1:27017/test_api_ts`)
         .then(() =>
             boxSuccess(
-                `La connexion à la base de donnée "${DATABASE_NAME}" en local est bien joignable.`,
+                `La connexion à la base de données "${DATABASE_NAME}" en local a été établie avec succès.\nVous pouvez désormais interagir avec la base de données et accéder aux données nécessaires pour votre application.`,
             ),
         )
         .catch(() =>
             boxWarning(
-                `La connexion à la base de donnée "${DATABASE_NAME}" en local a échoué`,
+                `La connexion à la base de données "${DATABASE_NAME}" en local n'a pas pu être établie.\nVeuillez vérifier les paramètres de connexion et vous assurer que la base de données est accessible et fonctionnelle.`,
             ),
         )
 }
@@ -33,12 +33,12 @@ export function getConnexionDBOnline() {
     )
         .then(() =>
             boxSuccess(
-                `La connexion à la base de donnée "${DATABASE_NAME}" en ligne est bien joignable.`,
+                `La connexion à la base de données "${DATABASE_NAME}" en ligne a été établie avec succès.\nVous pouvez désormais interagir avec la base de données et accéder aux données nécessaires pour votre application.`,
             ),
         )
         .catch(() => {
             boxWarning(
-                `La connexion à la base de donnée "${DATABASE_NAME}" en ligne a échoué`,
+                `La connexion à la base de données "${DATABASE_NAME}" en ligne n'a pas pu être établie.\nVeuillez vérifier les paramètres de connexion et vous assurer que la base de données est accessible et fonctionnelle.`,
             )
         })
 }
